@@ -1,4 +1,7 @@
+"use strict";
 window.addEventListener("load", start);
+
+let points = 0;
 
 function start() {
   console.log("JavaScript kører!");
@@ -8,15 +11,21 @@ function start() {
   document.querySelector("#bomb_container").classList.add("falling");
 
   // Registrer click
-  document.querySelector("#coin1_container").addEventListener("click", clickCoin);
-  document.querySelector("#bomb_container").addEventListener("click", clickBomb);
+  document
+    .querySelector("#coin1_container")
+    .addEventListener("click", clickCoin);
+  document
+    .querySelector("#bomb_container")
+    .addEventListener("click", clickBomb);
 }
 
 function clickCoin() {
   console.log("Click coin");
   // Forhindr gentagne clicks
-  document.querySelector("#coin1_container").removeEventListener("click", clickCoin);
-  
+  document
+    .querySelector("#coin1_container")
+    .removeEventListener("click", clickCoin);
+
   // Stop coin container
   document.querySelector("#coin1_container").classList.add("paused");
 
@@ -25,8 +34,19 @@ function clickCoin() {
 
   // når forsvind-animation er færdig: coinGone
   document.querySelector("#coin1_container").addEventListener("animationend", coinGone);
-  
+  incrementPoints();
 }
+//Funktioner vi laver som øvelse i timen
+function incrementPoints() {
+  points += 1;
+  console.log(points);
+  displayPoints();
+}
+function displayPoints() {
+  console.log("displayPoints");
+  document.querySelector("#coin_count").textContent = points;
+}
+//Funktioner vi laver som øvelse i timen
 
 function coinGone() {
   // fjern event der bringer os herind
@@ -34,7 +54,7 @@ function coinGone() {
 
   // fjern forsvind-animation
   document.querySelector("#coin1_sprite").classList.remove("zoom_out");
-  
+
   // fjern pause
   document.querySelector("#coin1_container").classList.remove("paused");
 
@@ -44,16 +64,16 @@ function coinGone() {
   document.querySelector("#coin1_container").classList.add("falling");
 
   // gør det muligt at klikke på coin igen
-  document.querySelector("#coin1_container").addEventListener("click", clickCoin);
+  document
+    .querySelector("#coin1_container")
+    .addEventListener("click", clickCoin);
 }
-
-
 
 function clickBomb() {
   console.log("Click bomb");
   // Forhindr gentagne clicks
   document.querySelector("#bomb_container").removeEventListener("click", clickBomb);
-  
+
   // Stop coin container
   document.querySelector("#bomb_container").classList.add("paused");
 
@@ -61,8 +81,9 @@ function clickBomb() {
   document.querySelector("#bomb_sprite").classList.add("zoom_in");
 
   // når forsvind-animation er færdig: coinGone
-  document.querySelector("#bomb_container").addEventListener("animationend", bombGone);
-  
+  document
+    .querySelector("#bomb_container")
+    .addEventListener("animationend", bombGone);
 }
 
 function bombGone() {
@@ -71,7 +92,7 @@ function bombGone() {
 
   // fjern forsvind-animation
   document.querySelector("#bomb_sprite").classList.remove("zoom_in");
-  
+
   // fjern pause
   document.querySelector("#bomb_container").classList.remove("paused");
 
@@ -81,5 +102,7 @@ function bombGone() {
   document.querySelector("#bomb_container").classList.add("falling");
 
   // gør det muligt at klikke på coin igen
-  document.querySelector("#bomb_container").addEventListener("click", clickBomb);
+  document
+    .querySelector("#bomb_container")
+    .addEventListener("click", clickBomb);
 }
