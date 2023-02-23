@@ -11,16 +11,26 @@ body {
 
 #game {
     grid-area: 1 / 1;
-       
     display: grid;
     grid-template: 100% / 100%;
 }
 
 #game_background {
     grid-area: 1 /1;
-    
-    background-image: linear-gradient(150deg, #20c903 0%, #09793b 100%);
+    background-image: url(images/Bar.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
 }
+#Guldbar {
+    grid-area: 1/1;
+    background-image: url(images/guldbar.png);
+    background-position: top center;
+    background-size: 10cm;
+    background-repeat: no-repeat;
+    z-index: 2;
+}
+
 
 #game_elements {
      grid-area: 1 /1;
@@ -30,47 +40,52 @@ body {
 
 /* positioning elements */
 
-#coin1_container {
+#vodka_container {
     position: absolute;
-    
+    width: 15%;
     top: 0;
     left: 10vw;
+    z-index: 4;
 }
 
-#coin1_sprite {
-    width: 100%;   
+#vodka_sprite {
+    width: 100%;  
+     
 }
 
-#coin2_container {
+#shot_container {
     position: absolute;
-    
+    width: 10%;
     top: 0;
     left: 40vw;
+    z-index: 4
 }
 
-#coin2_sprite {
+#shot_sprite {
     width: 100%;
 }
 
-#coin3_container {
+#øl_container {
     position: absolute;
-    
+    width: 10%;
     top: 0;
     left: 70vw;
+    z-index: 4
 }
 
-#coin3_sprite {
+#øl_sprite {
     width: 100%;
 }
 
-#bomb_container {
+#mælk_container {
     position: absolute;
-    
+    width: 15%;
     top: 0;
-    left: 30vw;
+    left: 25vw;
+    z-index: 4
 }
 
-#bomb_sprite {
+#mælk_sprite {
     width: 100%;
 }
 
@@ -79,6 +94,7 @@ body {
     
     top: 0;
     left: 55vw;
+    z-index: 4
 }
 
 #heart_sprite {
@@ -97,6 +113,7 @@ body {
     font-family: sans-serif;
     
     pointer-events: none;
+    z-index: 3;
 }
 
 #score_board {
@@ -121,7 +138,7 @@ body {
 }
 
 #life_board img {
-    width: 100%;
+    width: 150%;
 }
 
 .active_heart {
@@ -129,7 +146,7 @@ body {
 }
 
 .broken_heart {
-    filter: grayscale(75%) blur(.5px);
+    filter:grayscale(75%) blur(.5px);
 }
 
 /* Animations */

@@ -8,32 +8,32 @@ function start() {
   console.log("JavaScript kører!");
 
   // Start animationer
-  document.querySelector("#coin1_container").classList.add("falling");
-  document.querySelector("#bomb_container").classList.add("falling");
+  document.querySelector("#vodka_container").classList.add("falling");
+  document.querySelector("#mælk_container").classList.add("falling");
+  document.querySelector("#shot_container").classList.add("falling");
+  document.querySelector("#øl_container").classList.add("falling");
+  document.querySelector("#heart_container").classList.add("falling");
 
   // Registrer click
-  document.querySelector("#coin1_container").addEventListener("click", clickCoin);
-  document.querySelector("#bomb_container").addEventListener("click", clickBomb);
-
+  document.querySelector("#vodka_container").addEventListener("click", clickVodka);
+  document.querySelector("#shot_container").addEventListener("click", clickShot);
   document.querySelector("#heart_container").addEventListener("click", clickHeart);
 
 }
 
-function clickCoin() {
-  console.log("Click coin");
+function clickVodka() {
+
   // Forhindr gentagne clicks
-  document
-    .querySelector("#coin1_container")
-    .removeEventListener("click", clickCoin);
+  document.querySelector("#vodka_container").removeEventListener("click", clickVodka);
 
   // Stop coin container
-  document.querySelector("#coin1_container").classList.add("paused");
+  document.querySelector("#vodka_container").classList.add("paused");
 
   // sæt forsvind-animation på coin
-  document.querySelector("#coin1_sprite").classList.add("zoom_out");
+  document.querySelector("#vodka_sprite").classList.add("zoom_out");
 
   // når forsvind-animation er færdig: coinGone
-  document.querySelector("#coin1_container").addEventListener("animationend", coinGone);
+  document.querySelector("#vodka_container").addEventListener("animationend", vodkaGone);
   incrementPoints();
 }
 
@@ -49,43 +49,42 @@ function displayPoints() {
 }
 //Funktioner vi laver som øvelse i timen
 
-function coinGone() {
+function vodkaGone() {
   // fjern event der bringer os herind
-  document.querySelector("#coin1_container").removeEventListener("animationend", coinGone);
+  document.querySelector("#vodka_container").removeEventListener("animationend", vodkaGone);
 
   // fjern forsvind-animation
-  document.querySelector("#coin1_sprite").classList.remove("zoom_out");
+  document.querySelector("#vodka_sprite").classList.remove("zoom_out");
 
   // fjern pause
-  document.querySelector("#coin1_container").classList.remove("paused");
+  document.querySelector("#vodka_container").classList.remove("paused");
 
   // genstart falling animation
-  document.querySelector("#coin1_container").classList.remove("falling");
-  document.querySelector("#coin1_container").offsetWidth;
-  document.querySelector("#coin1_container").classList.add("falling");
+  document.querySelector("#vodka_container").classList.remove("falling");
+  document.querySelector("#vodka_container").offsetWidth;
+  document.querySelector("#vodka_container").classList.add("falling");
 
   // gør det muligt at klikke på coin igen
-  document
-    .querySelector("#coin1_container")
-    .addEventListener("click", clickCoin);
+  document.querySelector("#vodka_container").addEventListener("click", clickVodka);
 }
 
-function clickBomb() {
-  console.log("Click bomb");
+function clickShot() {
+  console.log("Click shot");
   // Forhindr gentagne clicks
-  document.querySelector("#bomb_container").removeEventListener("click", clickBomb);
+  document.querySelector("#shot_container").removeEventListener("click", clickShot);
 
   // Stop coin container
-  document.querySelector("#bomb_container").classList.add("paused");
+  document.querySelector("#shot_container").classList.add("paused");
 
   // sæt forsvind-animation på coin
-  document.querySelector("#bomb_sprite").classList.add("zoom_in");
+  document.querySelector("#shot_sprite").classList.add("zoom_in");
 
   // når forsvind-animation er færdig: coinGone
-  document.querySelector("#bomb_container").addEventListener("animationend", bombGone);
+  document.querySelector("#shot_container").addEventListener("animationend", shotGone);
   //Mist liv i korrekt rækkefælge, ved at klikke på bombe
   decrementLives();
 }
+
 function decrementLives() {
   console.log("decrementLives");
   displayDecrementedLives();
@@ -93,36 +92,35 @@ function decrementLives() {
   console.log(lives);
 }
 function displayDecrementedLives() {
-  document.querySelector("#heart" + lives).classList.remove("active_heart");
-  document.querySelector("#heart" + lives).classList.add("broken_heart");
+  document.querySelector("#life" + lives).classList.remove("active_heart");
+  document.querySelector("#life" + lives).classList.add("broken_heart");
   
 }
 
   //Mist liv i korrekt rækkefælge, ved at klikke på bombe
 
-function bombGone() {
+function shotGone() {
   // fjern event der bringer os herind
-  document.querySelector("#bomb_container").removeEventListener("animationend", bombGone);
+  document.querySelector("#shot_container").removeEventListener("animationend", shotGone);
 
   // fjern forsvind-animation
-  document.querySelector("#bomb_sprite").classList.remove("zoom_in");
+  document.querySelector("#shot_sprite").classList.remove("zoom_in");
 
   // fjern pause
-  document.querySelector("#bomb_container").classList.remove("paused");
+  document.querySelector("#shot_container").classList.remove("paused");
 
   // genstart falling animation
-  document.querySelector("#bomb_container").classList.remove("falling");
-  document.querySelector("#bomb_container").offsetWidth;
-  document.querySelector("#bomb_container").classList.add("falling");
+  document.querySelector("#shot_container").classList.remove("falling");
+  document.querySelector("#shot_container").offsetWidth;
+  document.querySelector("#shot_container").classList.add("falling");
 
   // gør det muligt at klikke på coin igen
-  document
-    .querySelector("#bomb_container")
-    .addEventListener("click", clickBomb);
+  document.querySelector("#shot_container").addEventListener("click", clickShot);
 }
+
 function clickHeart() {
   console.log("click");
-   document.querySelector("#bomb_container").removeEventListener("click", clickHeart);
+   document.querySelector("#heart_container").removeEventListener("click", clickHeart);
 
    // Stop coin container
    document.querySelector("#heart_container").classList.add("paused");
