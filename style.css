@@ -42,10 +42,11 @@ body {
 
 #vodka_container {
     position: absolute;
-    width: 15%;
-    top: 0;
+    width: 20%;
+    top:-20vw;
     left: 10vw;
     z-index: 4;
+    animation-delay: 1s;
 }
 
 #vodka_sprite {
@@ -55,10 +56,11 @@ body {
 
 #shot_container {
     position: absolute;
-    width: 10%;
-    top: 0;
+    width: 20%;
+    top:-20vw;
     left: 40vw;
-    z-index: 4
+    z-index: 4;
+    animation-delay: 1.2s;
 }
 
 #shot_sprite {
@@ -68,7 +70,7 @@ body {
 #øl_container {
     position: absolute;
     width: 10%;
-    top: 0;
+    top:-20vw;
     left: 70vw;
     z-index: 4
 }
@@ -77,12 +79,25 @@ body {
     width: 100%;
 }
 
+#drink_container {
+    position: absolute;
+    width: 10%;
+    top:-20vw;
+    left: 20vw;
+    z-index: 4;
+    animation-delay: 2s;
+}
+
+#drink_sprite {
+    width: 100%;
+}
+
 #mælk_container {
     position: absolute;
     width: 15%;
-    top: 0;
+    top:-20vw;
     left: 25vw;
-    z-index: 4
+    z-index:4;
 }
 
 #mælk_sprite {
@@ -91,10 +106,12 @@ body {
 
 #heart_container {
     position: absolute;
-    
-    top: 0;
-    left: 55vw;
-    z-index: 4
+    width: 10%;
+    top:-20vw;
+    left: 50vw;
+    z-index: 4;
+    animation-delay:3s;
+
 }
 
 #heart_sprite {
@@ -141,11 +158,11 @@ body {
     width: 150%;
 }
 
-.active_heart {
+.active_life {
    filter: drop-shadow(0 0 2px yellow);
 }
 
-.broken_heart {
+.broken_life {
     filter:grayscale(75%) blur(.5px);
 }
 
@@ -160,11 +177,11 @@ body {
 
 @keyframes falling {
     0% {
-        transform: translate(0,-100%);
+        transform: translate(0,0);
     }
 
     100% {
-        transform: translate(0,56.25vw);
+        transform: translate(0,100vw);
     }
 }
 
@@ -226,20 +243,20 @@ body {
     animation-play-state: paused;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#game_over{
+    grid-area: 1/1;
+    display: grid;
+    background-image: url(images/Gameover.jpg);
+    background-size: cover;
+    z-index: 999;
+}
+#level_complete{
+    grid-area: 1/1;
+    display: grid;
+    background-image: url("images/level_complete.png");
+    background-size: cover;
+    z-index: 999;
+}
+.hidden,#game_over.hidden,#level_complete.hidden{
+    display: none;
+}

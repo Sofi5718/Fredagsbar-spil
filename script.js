@@ -1,7 +1,7 @@
 "use strict";
 window.addEventListener("load", start);
 
-let points = 0;
+let points =0;
 let lives = 3;
 
 function start() {
@@ -13,12 +13,15 @@ function start() {
   document.querySelector("#shot_container").classList.add("falling");
   document.querySelector("#øl_container").classList.add("falling");
   document.querySelector("#heart_container").classList.add("falling");
-
+  document.querySelector("#drink_container").classList.add("falling");
+  
   // Registrer click
   document.querySelector("#vodka_container").addEventListener("click", clickVodka);
+  document.querySelector("#mælk_container").addEventListener("click", clickMælk);
   document.querySelector("#shot_container").addEventListener("click", clickShot);
+  document.querySelector("#øl_container").addEventListener("click", clickØl);
   document.querySelector("#heart_container").addEventListener("click", clickHeart);
-
+  document.querySelector("#drink_container").addEventListener("click", clickDrink);
 }
 
 function clickVodka() {
@@ -34,20 +37,82 @@ function clickVodka() {
 
   // når forsvind-animation er færdig: coinGone
   document.querySelector("#vodka_container").addEventListener("animationend", vodkaGone);
-  incrementPoints();
+  decrementPoints();
+  displayPoints();
 }
 
+function clickMælk() {
+  document.querySelector("#mælk_container").removeEventListener("click", clickMælk);
+  document.querySelector("#mælk_container").classList.add("paused");
+  document.querySelector("#mælk_sprite").classList.add("zoom_out");
+  document.querySelector("#mælk_container").addEventListener("animationend", MælkGone);
+  decrementLives();
+}
+function clickØl() {
+  document.querySelector("#øl_container").removeEventListener("click", clickØl);
+  document.querySelector("#øl_container").classList.add("paused");
+  document.querySelector("#øl_sprite").classList.add("zoom_out");
+  document.querySelector("#øl_container").addEventListener("animationend", ØlGone);
+  incrementPoints();
+  displayPoints();
+}
+function clickDrink() {
+  console.log("drink");
+  document.querySelector("#drink_container").removeEventListener("click", clickDrink);
+  document.querySelector("#drink_container").classList.add("paused");
+  document.querySelector("#drink_sprite").classList.add("zoom_out");
+  document.querySelector("#drink_container").addEventListener("animationend", DrinkGone);
+  incrementPoints();
+  displayPoints();
+}
 //Funktioner vi laver som øvelse i timen
 function incrementPoints() {
   points += 1;
   console.log(points);
   displayPoints();
+  if (points >= 10) {
+    levelComplete();
+  }
 }
 function displayPoints() {
   console.log("displayPoints");
-  document.querySelector("#coin_count").textContent = points;
+  document.querySelector("#point_count").textContent =points;
+}
+function decrementPoints() {
+  points -= 1;
+  console.log(points);
+  displayPoints();
 }
 //Funktioner vi laver som øvelse i timen
+
+function ØlGone() {
+  document.querySelector("#øl_container").removeEventListener("animationend", ØlGone);
+  document.querySelector("#øl_sprite").classList.remove("zoom_out");
+  document.querySelector("#øl_container").classList.remove("paused");
+  document.querySelector("#øl_container").classList.remove("falling");
+  document.querySelector("#øl_container").offsetWidth;
+  document.querySelector("#øl_container").classList.add("falling");
+  document.querySelector("#øl_container").addEventListener("click", clickØl);
+}
+function DrinkGone() {
+  document.querySelector("#drink_container").removeEventListener("animationend", DrinkGone);
+  document.querySelector("#drink_sprite").classList.remove("zoom_out");
+  document.querySelector("#drink_container").classList.remove("paused");
+  document.querySelector("#drink_container").classList.remove("falling");
+  document.querySelector("#drink_container").offsetWidth;
+  document.querySelector("#drink_container").classList.add("falling");
+  document.querySelector("#drink_container").addEventListener("click", clickDrink);
+}
+
+function MælkGone() {
+  document.querySelector("#mælk_container").removeEventListener("animationend", MælkGone);
+  document.querySelector("#mælk_sprite").classList.remove("zoom_out");
+  document.querySelector("#mælk_container").classList.remove("paused");
+  document.querySelector("#mælk_container").classList.remove("falling");
+  document.querySelector("#mælk_container").offsetWidth;
+  document.querySelector("#mælk_container").classList.add("falling");
+  document.querySelector("#mælk_container").addEventListener("click", clickMælk);
+}
 
 function vodkaGone() {
   // fjern event der bringer os herind
@@ -81,20 +146,22 @@ function clickShot() {
 
   // når forsvind-animation er færdig: coinGone
   document.querySelector("#shot_container").addEventListener("animationend", shotGone);
-  //Mist liv i korrekt rækkefælge, ved at klikke på bombe
-  decrementLives();
+  incrementPoints();
+  displayPoints();
 }
 
 function decrementLives() {
-  console.log("decrementLives");
+  if (lives <= 1) {
+    console.log("tabt");
+    displaygameOver();
+  }
   displayDecrementedLives();
-  lives -=1; 
-  console.log(lives);
-}
-function displayDecrementedLives() {
-  document.querySelector("#life" + lives).classList.remove("active_heart");
-  document.querySelector("#life" + lives).classList.add("broken_heart");
+  lives -= 1;
+  }
   
+function displayDecrementedLives() {
+  document.querySelector("#life" + lives).classList.remove("active_life");
+  document.querySelector("#life" + lives).classList.add("broken_life");
 }
 
   //Mist liv i korrekt rækkefælge, ved at klikke på bombe
@@ -119,7 +186,6 @@ function shotGone() {
 }
 
 function clickHeart() {
-  console.log("click");
    document.querySelector("#heart_container").removeEventListener("click", clickHeart);
 
    // Stop coin container
@@ -130,7 +196,8 @@ function clickHeart() {
 
    // når forsvind-animation er færdig: coinGone
   document.querySelector("#heart_container").addEventListener("animationend", heartGone);
-  incrementLives();
+  incrementLives()
+  displayincrementLives();
 }
 function heartGone() {
   // fjern event der bringer os herind
@@ -158,6 +225,14 @@ function incrementLives() {
   
 }
 function displayincrementLives() {
-  document.querySelector("#heart" + lives).classList.remove("broken_heart");
-  document.querySelector("#heart" + lives).classList.add("active_heart");
+  document.querySelector("#life" + lives).classList.remove("broken_life");
+  document.querySelector("#life" + lives).classList.add("active_life");
+}
+
+function displaygameOver() {
+  document.querySelector("#game_over").classList.remove("hidden");
+}
+
+function levelComplete() {
+  document.querySelector("#level_complete").classList.remove("hidden");
 }
