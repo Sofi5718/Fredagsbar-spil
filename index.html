@@ -46,11 +46,14 @@
                     <img id="life2" src="images/life.png" class="active_life">
                     <img id="life3" src="images/life.png" class="active_life">
                 </div>
-                <div id="time_board">
-                    <div id="time_left"></div>
+                    <div id="time_board">
+                        <div id="time_container">
+                            <div id="time_sprite" class=""></div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-        </div>
         <div id="start">
             <h2>Fredagsbar spillet 🥂</h2>
             <p>Saml 10 point ved at klikke på alle de drikkevare vi elsker at drikke på fredagsbar! </p>
@@ -58,9 +61,15 @@
             </p>
             <button id="btn_start" class="pulse">Start</button> 
         </div>
+
         <div id="start" class="hidden"></div>
-        <div id="game_over" class="hidden"></div>
-        <div id="level_complete" class="hidden"></div>
+        <div id="game_over" class="hidden">
+            <button id="prøv_igen" class="pulse">Har du lyst til at prøve igen?</button>
+        </div>
+        <div id="level_complete" class="hidden">
+            <button id="prøv_igen1" class="pulse">Har du lyst til at prøve igen?</button>
+        </div>
+
     </div>
 <audio id="start_lyd" src="Lyde/start.mp3"></audio>
 <audio id="background_lyd" src="Lyde/background.mp3"></audio>

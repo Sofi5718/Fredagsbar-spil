@@ -7,14 +7,23 @@ let lives = 3;
 function ready() {
   console.log("JavaScript ready!");
   document.querySelector("#btn_start").addEventListener("click", start);
+  document.querySelector("#prøv_igen").addEventListener("click", start);
+  document.querySelector("#prøv_igen1").addEventListener("click", start);
+  
 }
 
 function start() {
   console.log("JavaScript kører!");
   document.querySelector("#start_lyd").play();
   document.querySelector("#background_lyd").play();
+  resetTimer();
+  resetLives();
+  resetPoint();
+  startTimer();
      // skjul startskærm
   document.querySelector("#start").classList.add("hidden");
+  document.querySelector("#game_over").classList.add("hidden");
+  document.querySelector("#level_complete").classList.add("hidden");
 
   // Start animationer
   document.querySelector("#vand_container").classList.add("falling");
@@ -32,7 +41,20 @@ function start() {
   document.querySelector("#heart_container").addEventListener("click", clickHeart);
   document.querySelector("#drink_container").addEventListener("click", clickDrink);
 }
+function resetLives() {
+  lives = 3;
+  document.querySelector("#life1").classList.remove("broken_life");
+  document.querySelector("#life2").classList.remove("broken_life");
+  document.querySelector("#life3").classList.remove("broken_life");
+  document.querySelector("#life1").classList.add("active_life");
+  document.querySelector("#life2").classList.add("active_life");
+  document.querySelector("#life3").classList.add("active_life");
+}
 
+function resetPoint() {
+  points = 0;
+  displayPoints();
+}
 function clickVand() {
 
   // Forhindr gentagne clicks
@@ -258,4 +280,25 @@ function displaygameOver() {
 
 function levelComplete() {
   document.querySelector("#level_complete").classList.remove("hidden");
+}
+function startTimer() {
+  // Sæt timer-animationen (shrink) i gang ved at tilføje klassen shrink til time_sprite
+  document.querySelector("#time_sprite").classList.add("shrink");
+
+  // Tilføj en eventlistener som lytter efter at animationen er færdig (animationend) og kalder funktionen timeIsUp
+  document.querySelector("#time_sprite").addEventListener("animationend", timeIsUp);
+}
+function timeIsUp() {
+  console.log("Tiden er gået!");
+
+  if (points >= 10) {
+      levelComplete();
+  } else {
+    displaygameOver();
+  }
+}
+function resetTimer() {
+  document.querySelector("#time_sprite").classList.remove("shrink");
+  document.querySelector("#time_sprite").offsetWidth;
+
 }
