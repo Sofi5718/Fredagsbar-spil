@@ -1,11 +1,20 @@
 "use strict";
-window.addEventListener("load", start);
+window.addEventListener("load", ready);
 
 let points =0;
 let lives = 3;
 
+function ready() {
+  console.log("JavaScript ready!");
+  document.querySelector("#btn_start").addEventListener("click", start);
+}
+
 function start() {
   console.log("JavaScript kører!");
+  document.querySelector("#start_lyd").play();
+  document.querySelector("#background_lyd").play();
+     // skjul startskærm
+  document.querySelector("#start").classList.add("hidden");
 
   // Start animationer
   document.querySelector("#vodka_container").classList.add("falling");
@@ -47,6 +56,9 @@ function clickMælk() {
   document.querySelector("#mælk_sprite").classList.add("zoom_out");
   document.querySelector("#mælk_container").addEventListener("animationend", MælkGone);
   decrementLives();
+  document.querySelector("#").play();
+  document.querySelector("#").currentTime=0;
+
 }
 function clickØl() {
   document.querySelector("#øl_container").removeEventListener("click", clickØl);
