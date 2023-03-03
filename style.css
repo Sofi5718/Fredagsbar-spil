@@ -331,6 +331,7 @@ button {
         transform: scale(1);
     }
 }
+
 game_over_button {
     padding: 0.5em 1em;
     font-size: 10em;

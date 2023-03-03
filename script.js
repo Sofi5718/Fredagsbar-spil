@@ -276,10 +276,13 @@ function displayincrementLives() {
 
 function displaygameOver() {
   document.querySelector("#game_over").classList.remove("hidden");
+  stopGame();
 }
 
 function levelComplete() {
   document.querySelector("#level_complete").classList.remove("hidden");
+  stopGame();
+
 }
 function startTimer() {
   // Sæt timer-animationen (shrink) i gang ved at tilføje klassen shrink til time_sprite
@@ -300,5 +303,28 @@ function timeIsUp() {
 function resetTimer() {
   document.querySelector("#time_sprite").classList.remove("shrink");
   document.querySelector("#time_sprite").offsetWidth;
+}
+function stopGame() {
+  document.querySelector("#vand_container").removeEventListener("click", clickVand);
+  document.querySelector("#mælk_container").removeEventListener("click", clickMælk);
+  document.querySelector("#shot_container").removeEventListener("click", clickShot);
+  document.querySelector("#øl_container").removeEventListener("click", clickØl);
+  document.querySelector("#heart_container").removeEventListener("click", clickHeart);
+  document.querySelector("#drink_container").removeEventListener("click", clickDrink);
 
+  document.querySelector("#vand_container").removeEventListener("animationend", vandGone);
+  document.querySelector("#mælk_container").removeEventListener("animationend", MælkGone);
+  document.querySelector("#shot_container").removeEventListener("animationend", shotGone);
+  document.querySelector("#øl_container").removeEventListener("animationend", ØlGone);
+  document.querySelector("#heart_container").removeEventListener("animationend", heartGone);
+  document.querySelector("#drink_container").removeEventListener("animationend", DrinkGone);
+
+  document.querySelector("#vand_container").classList.add("paused");
+  document.querySelector("#mælk_container").classList.add("paused");
+  document.querySelector("#shot_container").classList.add("paused");
+  document.querySelector("#øl_container").classList.add("paused");
+  document.querySelector("#heart_container").classList.add("paused");
+  document.querySelector("#drink_container").classList.add("paused");
+
+  document.querySelector("#background_lyd").pause();
 }
