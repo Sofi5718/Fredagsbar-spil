@@ -9,10 +9,10 @@ function ready() {
   document.querySelector("#btn_start").addEventListener("click", start);
   document.querySelector("#prøv_igen").addEventListener("click", start);
   document.querySelector("#prøv_igen1").addEventListener("click", start);
-  
 }
 
 function start() {
+  resetAnimation();
   console.log("JavaScript kører!");
   document.querySelector("#start_lyd").play();
   document.querySelector("#background_lyd").play();
@@ -327,4 +327,13 @@ function stopGame() {
   document.querySelector("#drink_container").classList.add("paused");
 
   document.querySelector("#background_lyd").pause();
+}
+function resetAnimation() {
+  document.querySelector("#vand_container").classList.remove("paused");
+  document.querySelector("#mælk_container").classList.remove("paused");
+  document.querySelector("#shot_container").classList.remove("paused");
+  document.querySelector("#øl_container").classList.remove("paused");
+  document.querySelector("#heart_container").classList.remove("paused");
+  document.querySelector("#drink_container").classList.remove("paused");
+  
 }
